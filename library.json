@@ -1,0 +1,16 @@
+{
+  "name": "DBounce",
+  "keywords": "debounce, signal, input, ouput",
+  "description": "Fast, low resource and configurable debouncing library for Arduino",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kungpfui/DBounce/DBounce.git"
+  },
+  "version": "0.01",
+  "exclude": [
+    "*.png",
+    "*.zip"
+  ],
+  "frameworks": "arduino",
+  "platforms": "*"
+}
