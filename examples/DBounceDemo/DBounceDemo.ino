@@ -2,7 +2,7 @@
 
 /**
   DBounce demonstration sketch.
-  Turns on/off LEDs in dependence of debounced tactile switches.  
+  Turns on/off LEDs in dependence of debounced tactile switches.
 */
 
 const uint8_t leds[] = { 0, 2, 4, 6 };        // digital gpio numbers
@@ -34,8 +34,9 @@ void loop() {
 
     // first button
     if (buttons.change(0)) {
+
       // high (=true) or low (=false)?
-      if (buttons.read(0)) {
+      if (buttons[0]) {
         // => rose (de-pressed)
         digitalWrite(leds[0], HIGH);
       } else {
@@ -45,19 +46,17 @@ void loop() {
     }
 
     // do the same with the other buttons and LEDs.
-    // of course you can write the code much more simple.
+    // of course you can write this code much more simple.
     if (buttons.change(1)) {
-        digitalWrite(leds[1], buttons.read(1));
+        digitalWrite(leds[1], buttons[1]);
     }
     if (buttons.change(2)) {
-        digitalWrite(leds[2], buttons.read(2));
+        digitalWrite(leds[2], buttons[2]);
     }
     if (buttons.change(3)) {
-        digitalWrite(leds[3], buttons.read(3));
+        digitalWrite(leds[3], buttons[3]);
     }
 
-
-    
 
   }
 }

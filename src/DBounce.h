@@ -201,7 +201,7 @@ class DBounce
   @param idx   [IN] button array index
   @retval true  rising edge detected
   */
-  bool rose(uint8_t idx)
+  bool rose(uint8_t idx) const
   {
     return (m_state & m_change & ((bitmask_t)1u << idx)) != 0;
   };
@@ -213,7 +213,7 @@ class DBounce
   @param idx   [IN] button array index
   @retval true  falling edge detected
   */
-  bool fell(uint8_t idx)
+  bool fell(uint8_t idx) const
   {
     return (~m_state & m_change & ((bitmask_t)1u << idx)) != 0;
   };
@@ -225,29 +225,44 @@ class DBounce
   @param idx   [IN] button array index
   @retval true  change deteced
   */
-  bool change(uint8_t idx)
+  bool change(uint8_t idx) const
   {
     return (m_change & ((bitmask_t)1u << idx)) != 0;
   };
 
 
   /**********************************************************************************************
-  get pin state
+  get debounced pin state
 
   @param idx     [IN] button array index
   @retval false  low input level
   @retval true   high input level
   */
-  bool read(uint8_t idx)
+  bool read(uint8_t idx) const
   {
-    return (m_state & ((bitmask_t)1u << idx)) != 0;
-  };
+	return (m_state & ((bitmask_t)1u << idx)) != 0;
+  }
 
 
-  inline bitmask_t read() { return m_state; };
-  inline bitmask_t change() { return m_change; };
-  inline bitmask_t rose() { return m_state & m_change; };
-  inline bitmask_t fell() { return (~m_state) & m_change; };
+  /**********************************************************************************************
+  get debounced pin state. Alternative for @read(uint8_t).
+
+  @param idx     [IN] button array index
+  @retval false  low input level
+  @retval true   high input level
+  */
+  inline bool operator[](uint8_t idx) const
+  {
+	return read(idx);
+  }
+
+
+  inline bitmask_t read() const { return m_state; };
+  inline bitmask_t change() const { return m_change; };
+  inline bitmask_t rose() const { return m_state & m_change; };
+  inline bitmask_t fell() const { return (~m_state) & m_change; };
+
+  inline uint8_t pinnr(uint8_t idx) const { return pins[idx]; };
 };
 
 #endif
