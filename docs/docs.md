@@ -21,13 +21,14 @@ The behaviour with debounce duration only is a delay of both edges by *debounceM
 ![debounce only](debounce_only_std.png)
 
 Glitches which are shorter than *debounceMS* are not recoginzed.
+
 ![glitch with debounce only](debounce_only_glitch.png)
 
 
 Lock-out Duration
 -----------------
 ```c++
-// lock-out setup 
+// lock-out setup
 DBounce<uint8_t, __DBNC_N(buttons), 0, 25> debounce(buttons);
 
 // debounceMS = 0  // 0 means: no debounce
@@ -52,16 +53,18 @@ First deteced change counts. There is some processing delay which depends on CPU
 Combined debounce and lock-out
 -----------------------------
 ```c++
-// combined setup 
+// combined setup
 DBounce<uint8_t, __DBNC_N(buttons), 25, 25> debounce(buttons);
 
 // debounceMS = 25  // ms
 // lockoutMS = 25   // ms
 ```
-Get the best out of both world. The combination allows fast reactions without unexpected "button presses" from distortion which can occure with lock-out only setups. Normally the debounce signal looks like a debounce-only signal...   
+Get the best out of both world. The combination allows fast reactions without unexpected "button presses" from distortion which can occure with lock-out only setups. Normally the debounce signal looks like a debounce-only signal...
+
 ![combined setup](combined_std.png)
 
-... but short signals are prolonged to a least press *debounceMS* + lockoutMS*.
+... but short signals are prolonged to a least *debounceMS* + *lockoutMS*.
+
 ![combined setup with short signal](combined_short.png)
 
 
