@@ -13,7 +13,8 @@ Well C++ templates are powerful but not all of my ideas could be implemented the
 
 Documentation
 =============
-... work in progress. I made already some nice scope picture which show the debounce state very nicely.   
+[Docs](docs/docs.md) ... work in progress. I made some nice scope picture which show the debounced signal very nicely.
+
 
 How to use
 ----------
