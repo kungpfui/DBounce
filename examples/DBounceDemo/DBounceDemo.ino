@@ -46,17 +46,13 @@ void loop() {
     }
 
     // do the same with the other buttons and LEDs.
-    // of course you can write this code much more simple.
-    if (buttons.change(1)) {
-        digitalWrite(leds[1], buttons[1]);
+    // of course you can write this code much simpler and in a loop.
+    uint8_t idx;
+    for(idx = 1; idx < __DBNC_N(tactiles); idx++) {
+      if (buttons.change(idx)) {
+        digitalWrite(leds[idx], buttons[idx]);
+      }
     }
-    if (buttons.change(2)) {
-        digitalWrite(leds[2], buttons[2]);
-    }
-    if (buttons.change(3)) {
-        digitalWrite(leds[3], buttons[3]);
-    }
-
-
+    
   }
 }
